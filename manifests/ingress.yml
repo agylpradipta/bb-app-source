@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: block-buster-ingress
+  namespace: 2-demo
+  annotations:
+    kubernetes.io/ingress.class: nginx  # Adjust this based on your Ingress controller
+    nginx.ingress.kubernetes.io/ssl-redirect: "false"  # Disable SSL redirect
+spec:
+  rules:
+  - http:
+      paths:
+      - path: /
+        pathType: Prefix
+        backend:
+          service:
+            name: block-buster-service
+            port: 
+              number: 30002
